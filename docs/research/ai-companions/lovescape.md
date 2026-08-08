@@ -1,311 +1,154 @@
-# Clairlia — Protocole de test des compagnons IA
+# Lovescape — Recherche Clairlia
 
-## Objectif
+Dernière vérification : 2026-08-08
 
-Comparer chaque plateforme selon exactement les mêmes critères.
+## Statut de l'analyse
 
-Aucune note ne doit être attribuée sur la base du marketing de la plateforme.
+Type d'analyse : documentaire
 
-Les observations doivent provenir :
-1. de tests réalisés directement ;
-2. des pages officielles de la plateforme ;
-3. des politiques de confidentialité et conditions d'utilisation.
+Test manuel approfondi : non
 
----
-
-# Plateformes initiales
-
-- Candy.ai
-- OurDream
-- Lovescape
+Les informations ci-dessous proviennent principalement du centre d'aide officiel Lovescape.
 
 ---
 
-# Règles du test
+## Positionnement
 
-Utiliser une identité fictive.
-
-Ne fournir :
-- aucun vrai numéro de téléphone personnel si évitable ;
-- aucune information médicale ;
-- aucune donnée sexuelle personnelle ;
-- aucune information bancaire hors procédure normale d'achat ;
-- aucune information confidentielle.
-
-Utiliser la même série de tests sur toutes les plateformes.
+Lovescape se présente comme une plateforme de compagnons et personnages IA permettant de créer des personnages personnalisés et d'entretenir des conversations avec eux.
 
 ---
 
-# Barème
+## Compte gratuit
 
-Chaque critère reçoit une note de 0 à 5.
+La création d'un compte Lovescape est gratuite.
 
-0 = inutilisable / absent
-1 = très mauvais
-2 = faible
-3 = correct
-4 = bon
-5 = excellent
+Les utilisateurs peuvent notamment s'inscrire avec :
+- Google ;
+- X ;
+- email.
 
----
-
-# 1. Inscription
-
-Évaluer :
-
-- simplicité de création du compte ;
-- email requis ;
-- vérification d'âge ;
-- nombre d'étapes ;
-- clarté de l'interface ;
-- disponibilité en français.
-
-Note /5 :
-
-Observations :
+Une vérification email peut être demandée lors d'une inscription classique par email.
 
 ---
 
-# 2. Qualité du français
+## Premium
 
-Effectuer plusieurs conversations uniquement en français.
+Lovescape Premium annonce notamment :
 
-Évaluer :
+- conversations illimitées ;
+- création avancée de personnages ;
+- plus de 100 paramètres de personnalisation annoncés ;
+- interactions vocales ;
+- génération d'images ;
+- fonctionnalités adultes ;
+- accès aux fonctions Premium.
 
-- grammaire ;
-- vocabulaire ;
-- compréhension ;
-- naturel des réponses ;
-- capacité à rester en français.
+Les prix exacts ne sont pas publiés de manière suffisamment stable dans la documentation consultée pour que Clairlia les inscrive comme valeurs permanentes.
 
-Note /5 :
-
-Observations :
-
----
-
-# 3. Mémoire immédiate
-
-Dire au compagnon :
-
-"Je m'appelle Alex et ma boisson préférée est le café."
-
-Continuer la conversation pendant plusieurs messages.
-
-Puis demander :
-
-"Quelle est ma boisson préférée ?"
-
-Note /5 :
-
-Observations :
+Ils devront être relevés directement sur la page d'abonnement juste avant publication.
 
 ---
 
-# 4. Mémoire après conversation
+## Renouvellement
 
-Pendant une première session, fournir trois informations fictives :
+L'abonnement Premium est renouvelé automatiquement sauf annulation.
 
-- prénom : Alex ;
-- ville préférée : Montréal ;
-- activité préférée : randonnée.
-
-Quitter ou changer de conversation si possible.
-
-Revenir plus tard et tester ce que le compagnon a conservé.
-
-Note /5 :
-
-Observations :
+Lovescape indique qu'il peut être annulé depuis les paramètres du compte.
 
 ---
 
-# 5. Cohérence
+## Personnalisation
 
-Créer un contexte fictif simple.
-
-Exemple :
-
-"Nous préparons un voyage à Lisbonne pour le mois prochain."
-
-Continuer pendant au moins 15 messages.
-
-Vérifier si l'IA :
-
-- oublie la destination ;
-- change les faits ;
-- invente des événements contradictoires ;
-- maintient correctement le contexte.
-
-Note /5 :
-
-Observations :
-
----
-
-# 6. Personnalisation
-
-Évaluer :
+La création de personnages permet notamment de définir :
 
 - apparence ;
 - personnalité ;
-- style conversationnel ;
-- intérêts ;
+- occupation ;
+- rôle ;
+- attitude ;
+- relation avec l'utilisateur ;
 - voix ;
-- instructions personnalisées.
-
-Note /5 :
-
-Observations :
+- style et longueur des conversations ;
+- différents paramètres comportementaux.
 
 ---
 
-# 7. Fonctionnalités
+## Mémoire
 
-Noter la présence ou l'absence de :
+Lovescape indique que l'historique des conversations est conservé afin de permettre au personnage de tenir compte des échanges précédents.
 
-- chat texte ;
+L'éditeur reconnaît cependant que le personnage peut parfois oublier certains éléments lorsque ceux-ci n'ont pas été évoqués depuis un certain temps.
+
+Clairlia considère ce point comme une limitation explicitement reconnue par l'éditeur, et non comme le résultat d'un test indépendant.
+
+---
+
+## Confidentialité
+
+Selon Lovescape :
+
+- les personnages créés sont privés par défaut ;
+- un personnage peut être rendu public volontairement ;
+- les conversations privées ne sont pas visibles par les autres utilisateurs ;
+- les images produites dans un chat restent associées à ce chat sauf partage volontaire.
+
+Ces déclarations proviennent de Lovescape et n'ont pas été auditées techniquement par Clairlia.
+
+---
+
+## Suppression du contenu
+
+Depuis le profil d'un personnage, Lovescape propose notamment :
+
+- Clear Chat ;
+- Delete Character.
+
+Ces actions sont décrites comme irréversibles.
+
+---
+
+## Modération
+
+Lovescape indique utiliser une combinaison de :
+- détection automatisée ;
+- revue humaine pour certains cas.
+
+La plateforme interdit notamment :
+- contenu impliquant des mineurs ;
+- contenu non consensuel ;
+- deepfakes et représentations non autorisées de personnes réelles ;
+- certaines formes de violence et autres contenus interdits.
+
+---
+
+## Points positifs documentaires
+
+- compte gratuit ;
+- inscription Google/X/email ;
+- conversations Premium illimitées ;
+- personnalisation importante ;
+- voix ;
 - génération d'images ;
-- voix ;
-- appels ;
-- vidéo ;
-- mémoire ;
-- personnages personnalisés ;
-- application mobile ;
-- version web.
-
-Observations :
+- mémoire conversationnelle annoncée ;
+- personnages privés par défaut ;
+- politique de modération documentée.
 
 ---
 
-# 8. Version gratuite
+## Points de vigilance documentaires
 
-Documenter précisément :
-
-- inscription gratuite ;
-- nombre de messages ;
-- crédits offerts ;
-- fonctions bloquées ;
-- durée du test gratuit.
-
-Ne jamais écrire "gratuit" si l'utilisation réelle est fortement limitée sans l'expliquer.
-
-Note /5 :
-
-Observations :
-
----
-
-# 9. Prix
-
-Relever :
-
-- prix mensuel ;
-- prix trimestriel ;
-- prix annuel ;
-- crédits supplémentaires ;
+- prix à vérifier directement avant publication ;
 - renouvellement automatique ;
-- taxes éventuelles ;
-- méthode d'annulation.
-
-Date du relevé :
-
-Prix observés :
+- fiabilité de la mémoire non garantie ;
+- déclarations de confidentialité provenant principalement de l'éditeur ;
+- contenu adulte disponible avec Premium.
 
 ---
-
-# 10. Confidentialité
-
-Lire la politique de confidentialité.
-
-Documenter :
-
-- données collectées ;
-- conservation des conversations ;
-- utilisation pour entraîner les modèles ;
-- accès humain éventuel ;
-- possibilité de suppression ;
-- export des données ;
-- partage avec des tiers.
-
-Note /5 :
-
-Observations :
-
----
-
-# 11. Suppression du compte
-
-Tester si possible :
-
-- emplacement du bouton ;
-- nombre d'étapes ;
-- confirmation ;
-- délai annoncé ;
-- suppression des conversations.
-
-Note /5 :
-
-Observations :
-
----
-
-# 12. Mobile
-
-Tester avec un affichage mobile.
-
-Évaluer :
-
-- lisibilité ;
-- navigation ;
-- performance ;
-- chat ;
-- création du personnage ;
-- paiement.
-
-Note /5 :
-
-Observations :
-
----
-
-# 13. Transparence commerciale
-
-Évaluer :
-
-- prix visibles avant paiement ;
-- renouvellement clairement expliqué ;
-- coût des crédits ;
-- limites communiquées ;
-- méthode d'annulation.
-
-Note /5 :
-
-Observations :
-
----
-
-# Résultat final
-
-## Points forts
-
--
-
-## Points faibles
-
--
-
-## Pour quel utilisateur ?
-
--
-
-## Pour qui déconseiller ?
-
--
-
-## Note finale
-
-/5
 
 ## Verdict provisoire
 
+Lovescape semble particulièrement orienté vers la personnalisation des personnages et l'expérience conversationnelle.
+
+Sa documentation reconnaît certaines limites de mémoire, ce qui est un signal de transparence intéressant.
+
+Une comparaison définitive nécessitera surtout de vérifier les prix actuels et de comparer ses limitations gratuites à celles de Candy.ai et OurDream.

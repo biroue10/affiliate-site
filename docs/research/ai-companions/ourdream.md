@@ -1,311 +1,156 @@
-# Clairlia — Protocole de test des compagnons IA
+# OurDream — Recherche Clairlia
 
-## Objectif
+Dernière vérification : 2026-08-08
 
-Comparer chaque plateforme selon exactement les mêmes critères.
+## Statut de l'analyse
 
-Aucune note ne doit être attribuée sur la base du marketing de la plateforme.
+Type d'analyse : documentaire
 
-Les observations doivent provenir :
-1. de tests réalisés directement ;
-2. des pages officielles de la plateforme ;
-3. des politiques de confidentialité et conditions d'utilisation.
+Test manuel approfondi : non
 
----
-
-# Plateformes initiales
-
-- Candy.ai
-- OurDream
-- Lovescape
+Les caractéristiques ci-dessous proviennent principalement des pages officielles OurDream et de son centre d'aide.
 
 ---
 
-# Règles du test
+## Positionnement
 
-Utiliser une identité fictive.
+OurDream est une plateforme de compagnons IA destinée aux adultes.
 
-Ne fournir :
-- aucun vrai numéro de téléphone personnel si évitable ;
-- aucune information médicale ;
-- aucune donnée sexuelle personnelle ;
-- aucune information bancaire hors procédure normale d'achat ;
-- aucune information confidentielle.
-
-Utiliser la même série de tests sur toutes les plateformes.
-
----
-
-# Barème
-
-Chaque critère reçoit une note de 0 à 5.
-
-0 = inutilisable / absent
-1 = très mauvais
-2 = faible
-3 = correct
-4 = bon
-5 = excellent
-
----
-
-# 1. Inscription
-
-Évaluer :
-
-- simplicité de création du compte ;
-- email requis ;
-- vérification d'âge ;
-- nombre d'étapes ;
-- clarté de l'interface ;
-- disponibilité en français.
-
-Note /5 :
-
-Observations :
-
----
-
-# 2. Qualité du français
-
-Effectuer plusieurs conversations uniquement en français.
-
-Évaluer :
-
-- grammaire ;
-- vocabulaire ;
-- compréhension ;
-- naturel des réponses ;
-- capacité à rester en français.
-
-Note /5 :
-
-Observations :
-
----
-
-# 3. Mémoire immédiate
-
-Dire au compagnon :
-
-"Je m'appelle Alex et ma boisson préférée est le café."
-
-Continuer la conversation pendant plusieurs messages.
-
-Puis demander :
-
-"Quelle est ma boisson préférée ?"
-
-Note /5 :
-
-Observations :
-
----
-
-# 4. Mémoire après conversation
-
-Pendant une première session, fournir trois informations fictives :
-
-- prénom : Alex ;
-- ville préférée : Montréal ;
-- activité préférée : randonnée.
-
-Quitter ou changer de conversation si possible.
-
-Revenir plus tard et tester ce que le compagnon a conservé.
-
-Note /5 :
-
-Observations :
-
----
-
-# 5. Cohérence
-
-Créer un contexte fictif simple.
-
-Exemple :
-
-"Nous préparons un voyage à Lisbonne pour le mois prochain."
-
-Continuer pendant au moins 15 messages.
-
-Vérifier si l'IA :
-
-- oublie la destination ;
-- change les faits ;
-- invente des événements contradictoires ;
-- maintient correctement le contexte.
-
-Note /5 :
-
-Observations :
-
----
-
-# 6. Personnalisation
-
-Évaluer :
-
-- apparence ;
-- personnalité ;
-- style conversationnel ;
-- intérêts ;
-- voix ;
-- instructions personnalisées.
-
-Note /5 :
-
-Observations :
-
----
-
-# 7. Fonctionnalités
-
-Noter la présence ou l'absence de :
-
+Elle combine notamment :
 - chat texte ;
+- création de personnages ;
 - génération d'images ;
+- génération de vidéos ;
+- voix et appels ;
+- conversations de groupe.
+
+---
+
+## Accès gratuit
+
+OurDream indique que les 5 premiers messages peuvent être envoyés sans compte.
+
+Après création d'un compte gratuit, les pages officielles ne sont pas totalement cohérentes :
+- certaines indiquent 50 Dreamcoins ;
+- d'autres indiquent 55 Dreamcoins.
+
+Un message de compte gratuit coûte normalement 1 Dreamcoin.
+
+Clairlia devra donc vérifier le chiffre affiché au moment de la publication et éviter de présenter 50 ou 55 comme une valeur permanente.
+
+---
+
+## Abonnement Premium
+
+Selon le centre d'aide :
+
+### Mensuel
+
+19,99 USD / mois
+
+Le compte reçoit :
+- 1 000 Dreamcoins à l'activation ;
+- puis 1 000 Dreamcoins par mois.
+
+### Annuel
+
+La documentation officielle contient actuellement des montants contradictoires pour la facturation annuelle.
+
+Clairlia ne publiera pas de prix annuel définitif sans nouvelle vérification juste avant publication.
+
+Le plan annuel annonce :
+- Dreamcoins supplémentaires au démarrage ;
+- puis une allocation mensuelle.
+
+---
+
+## Fonctionnement des Dreamcoins
+
+Pour les comptes gratuits :
+- messages standards : environ 1 Dreamcoin par message.
+
+Pour les abonnés :
+- les chats standards peuvent ne consommer aucun Dreamcoin ;
+- certains modèles avancés peuvent en consommer.
+
+Les Dreamcoins servent également à :
+- génération d'images ;
+- génération de vidéos ;
 - voix ;
 - appels ;
-- vidéo ;
-- mémoire ;
-- personnages personnalisés ;
-- application mobile ;
-- version web.
-
-Observations :
+- création de personnages ;
+- autres fonctionnalités multimédias.
 
 ---
 
-# 8. Version gratuite
+## Fonctionnalités annoncées
 
-Documenter précisément :
-
-- inscription gratuite ;
-- nombre de messages ;
-- crédits offerts ;
-- fonctions bloquées ;
-- durée du test gratuit.
-
-Ne jamais écrire "gratuit" si l'utilisation réelle est fortement limitée sans l'expliquer.
-
-Note /5 :
-
-Observations :
+- chat texte ;
+- mémoire conversationnelle ;
+- création de personnages ;
+- images IA ;
+- vidéos IA ;
+- appels vocaux ;
+- voix ;
+- conversations de groupe ;
+- jusqu'à 12 personnages dans certains chats de groupe ;
+- accès mobile via navigateur.
 
 ---
 
-# 9. Prix
+## Vérification d'âge
 
-Relever :
+La page d'inscription indique explicitement que le service est réservé aux adultes.
 
-- prix mensuel ;
-- prix trimestriel ;
-- prix annuel ;
-- crédits supplémentaires ;
-- renouvellement automatique ;
-- taxes éventuelles ;
-- méthode d'annulation.
-
-Date du relevé :
-
-Prix observés :
+Une confirmation 18+ est affichée avant la création du compte.
 
 ---
 
-# 10. Confidentialité
+## Confidentialité et modération
 
-Lire la politique de confidentialité.
+OurDream indique que ses modérateurs ne voient pas normalement les conversations privées entre utilisateurs et personnages.
 
-Documenter :
+Les informations de compte sont limitées aux équipes autorisées lorsqu'une investigation le nécessite.
 
-- données collectées ;
-- conservation des conversations ;
-- utilisation pour entraîner les modèles ;
-- accès humain éventuel ;
-- possibilité de suppression ;
-- export des données ;
-- partage avec des tiers.
-
-Note /5 :
-
-Observations :
+Le service utilise également des processus de modération pour le contenu public.
 
 ---
 
-# 11. Suppression du compte
+## Suppression du compte
 
-Tester si possible :
+La suppression du compte est disponible dans :
 
-- emplacement du bouton ;
-- nombre d'étapes ;
-- confirmation ;
-- délai annoncé ;
-- suppression des conversations.
-
-Note /5 :
-
-Observations :
+Settings → Account management → Delete your account.
 
 ---
 
-# 12. Mobile
+## Points positifs documentaires
 
-Tester avec un affichage mobile.
-
-Évaluer :
-
-- lisibilité ;
-- navigation ;
-- performance ;
-- chat ;
-- création du personnage ;
-- paiement.
-
-Note /5 :
-
-Observations :
+- possibilité d'essayer quelques messages sans compte ;
+- version gratuite ;
+- chats standards illimités pour les abonnés selon le modèle utilisé ;
+- génération d'images et vidéos ;
+- appels vocaux ;
+- conversations de groupe ;
+- documentation publique relativement détaillée ;
+- outils de gestion du compte.
 
 ---
 
-# 13. Transparence commerciale
+## Points de vigilance documentaires
 
-Évaluer :
-
-- prix visibles avant paiement ;
-- renouvellement clairement expliqué ;
-- coût des crédits ;
-- limites communiquées ;
-- méthode d'annulation.
-
-Note /5 :
-
-Observations :
+- système de Dreamcoins complexe ;
+- certaines fonctionnalités peuvent consommer rapidement des crédits ;
+- informations officielles contradictoires sur certains chiffres ;
+- coût réel potentiellement supérieur à l'abonnement selon l'utilisation multimédia ;
+- service explicitement orienté adultes.
 
 ---
-
-# Résultat final
-
-## Points forts
-
--
-
-## Points faibles
-
--
-
-## Pour quel utilisateur ?
-
--
-
-## Pour qui déconseiller ?
-
--
-
-## Note finale
-
-/5
 
 ## Verdict provisoire
 
+OurDream semble particulièrement complet pour les utilisateurs recherchant plusieurs types d'interactions au-delà du simple chat.
+
+Cependant, son économie basée sur les Dreamcoins rend le coût réel moins simple à comparer qu'un abonnement totalement illimité.
+
+Clairlia devra vérifier les tarifs et allocations exactes au moment de la publication.
