@@ -1,0 +1,49 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Transparence et affiliation"
+	description="Informations sur le fonctionnement des liens d'affiliation et notre politique éditoriale."
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{
+					label: 'Affiliation',
+					href: '/affiliation/',
+				},
+			]}
+		/>
+
+		<div class="prose">
+			<h1>Transparence et affiliation</h1>
+
+			<p>
+				Certains liens présents sur ce site peuvent être des liens
+				d'affiliation.
+			</p>
+
+			<p>
+				Lorsqu'un lecteur utilise l'un de ces liens pour s'inscrire ou
+				effectuer un achat auprès d'un partenaire, le site peut recevoir
+				une commission.
+			</p>
+
+			<p>
+				Cette rémunération n'entraîne normalement aucun coût
+				supplémentaire pour le lecteur.
+			</p>
+
+			<h2>Critères éditoriaux</h2>
+
+			<p>
+				Les rémunérations d'affiliation ne doivent pas déterminer les
+				conclusions de nos articles. Les limitations importantes d'un
+				service doivent être mentionnées lorsqu'elles sont pertinentes.
+			</p>
+		</div>
+	</div>
+</BaseLayout>

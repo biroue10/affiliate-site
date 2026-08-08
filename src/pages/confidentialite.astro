@@ -1,0 +1,47 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Politique de confidentialité"
+	description="Informations relatives à la confidentialité et au traitement des données sur ce site."
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{
+					label: 'Confidentialité',
+					href: '/confidentialite/',
+				},
+			]}
+		/>
+
+		<div class="prose">
+			<h1>Politique de confidentialité</h1>
+
+			<p>
+				Le site ne propose actuellement aucun compte utilisateur et ne
+				demande aucune information relative aux préférences sexuelles
+				de ses visiteurs.
+			</p>
+
+			<h2>Liens externes</h2>
+
+			<p>
+				Les liens vers des plateformes tierces conduisent vers des
+				services indépendants disposant de leurs propres politiques de
+				confidentialité.
+			</p>
+
+			<h2>Mesure d'audience</h2>
+
+			<p>
+				Tout outil de mesure d'audience ou système de cookies qui serait
+				activé ultérieurement devra être documenté sur cette page avant
+				sa mise en production.
+			</p>
+		</div>
+	</div>
+</BaseLayout>

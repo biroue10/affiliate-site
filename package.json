@@ -11,7 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "validate": "npm run check && npm run build"
+    "validate": "npm run check && npm run build && npm run validate:content && npm run validate:performance",
+    "validate:performance": "node scripts/check-performance.mjs",
+    "validate:content": "node scripts/check-published-content.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

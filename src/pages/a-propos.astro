@@ -1,0 +1,44 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="À propos"
+	description="Découvrez notre approche éditoriale, nos critères d'évaluation et notre méthode de comparaison des services."
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{ label: 'À propos', href: '/a-propos/' },
+			]}
+		/>
+
+		<div class="prose">
+			<h1>À propos</h1>
+
+			<p>
+				Ce site publie des guides, avis et comparatifs destinés à aider
+				les lecteurs à comprendre les différences entre plusieurs
+				services en ligne.
+			</p>
+
+			<h2>Notre approche</h2>
+
+			<p>
+				Nous cherchons à distinguer les caractéristiques vérifiables,
+				les avantages, les limites, les modèles tarifaires et les
+				questions de confidentialité de chaque service analysé.
+			</p>
+
+			<h2>Indépendance éditoriale</h2>
+
+			<p>
+				La présence éventuelle d'un lien affilié n'empêche pas la
+				publication de critiques ou de conclusions négatives lorsqu'elles
+				sont justifiées.
+			</p>
+		</div>
+	</div>
+</BaseLayout>

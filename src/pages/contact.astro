@@ -1,0 +1,28 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Contact"
+	description="Contacter l'équipe éditoriale."
+	noindex={true}
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{ label: 'Contact', href: '/contact/' },
+			]}
+		/>
+
+		<div class="prose">
+			<h1>Contact</h1>
+
+			<p>
+				Le canal de contact public sera ajouté avant le lancement
+				officiel du site.
+			</p>
+		</div>
+	</div>
+</BaseLayout>

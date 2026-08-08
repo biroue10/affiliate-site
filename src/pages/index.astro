@@ -1,49 +1,107 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import {
+	SITE_CATEGORIES,
+	SITE_DESCRIPTION,
+	SITE_LANG,
+	SITE_TAGLINE,
+	SITE_TITLE,
+} from '../consts';
+
+import {
+	getPostPath,
+	getPublishedPosts,
+} from '../lib/content';
+
+const latestPosts = (await getPublishedPosts()).slice(0, 6);
+
+const siteBase = Astro.site ?? new URL(Astro.url.origin);
+
+const websiteSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: SITE_TITLE,
+	description: SITE_DESCRIPTION,
+	url: new URL('/', siteBase).href,
+	inLanguage: SITE_LANG,
+};
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
+<BaseLayout
+	title={SITE_TITLE}
+	description={SITE_DESCRIPTION}
+	schemas={[websiteSchema]}
+>
+	<section class="hero">
+		<div class="container">
+			<p class="eyebrow">Guides · Avis · Comparatifs</p>
+
+			<h1>{SITE_TAGLINE}</h1>
+
+			<p class="hero-description">
+				Des analyses indépendantes pour comparer les plateformes,
+				comprendre leurs avantages et identifier leurs limites.
 			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+
+			<a class="primary-button" href="/comparatifs/">
+				Voir les comparatifs
+			</a>
+		</div>
+	</section>
+
+	<section class="container section">
+		<header class="section-heading">
+			<p class="eyebrow">Explorer</p>
+
+			<h2>Nos catégories</h2>
+		</header>
+
+		<div class="category-grid">
+			{
+				SITE_CATEGORIES.map((category) => (
+					<a
+						class="category-card"
+						href={`/${category.slug}/`}
+					>
+						<h3>{category.label}</h3>
+
+						<p>{category.description}</p>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	{
+		latestPosts.length > 0 && (
+			<section class="container section">
+				<header class="section-heading">
+					<p class="eyebrow">Nouveautés</p>
+
+					<h2>Dernières publications</h2>
+				</header>
+
+				<div class="article-grid">
+					{
+						latestPosts.map((post) => (
+							<article class="article-card">
+								<p class="article-category">
+									{post.data.category}
+								</p>
+
+								<h3>
+									<a href={getPostPath(post)}>
+										{post.data.title}
+									</a>
+								</h3>
+
+								<p>{post.data.description}</p>
+							</article>
+						))
+					}
+				</div>
+			</section>
+		)
+	}
+</BaseLayout>

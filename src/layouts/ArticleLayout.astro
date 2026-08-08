@@ -1,0 +1,141 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+import AffiliateDisclosure from '../components/AffiliateDisclosure.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_CATEGORIES, SITE_TITLE } from '../consts';
+import BaseLayout from './BaseLayout.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	author,
+	category,
+	affiliate,
+	adultContent,
+	noindex,
+	canonical,
+} = Astro.props;
+
+const siteBase = Astro.site ?? new URL(Astro.url.origin);
+
+const pageURL = canonical
+	? new URL(canonical, siteBase)
+	: new URL(Astro.url.pathname, siteBase);
+
+const categoryInfo = SITE_CATEGORIES.find(
+	(item) => item.slug === category,
+);
+
+const categoryLabel = categoryInfo?.label ?? category;
+
+const articleSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	headline: title,
+	description,
+	url: pageURL.href,
+	mainEntityOfPage: pageURL.href,
+	datePublished: pubDate.toISOString(),
+	dateModified: (updatedDate ?? pubDate).toISOString(),
+
+	author: {
+		'@type': 'Organization',
+		name: author,
+	},
+
+	publisher: {
+		'@type': 'Organization',
+		name: SITE_TITLE,
+	},
+
+	...(heroImage
+		? {
+				image: new URL(heroImage.src, siteBase).href,
+			}
+		: {}),
+};
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	image={heroImage}
+	canonical={canonical}
+	noindex={noindex}
+	type="article"
+	publishedTime={pubDate}
+	modifiedTime={updatedDate ?? pubDate}
+	adultContent={adultContent}
+	schemas={[articleSchema]}
+>
+	<div class="container article-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{
+					label: categoryLabel,
+					href: `/${category}/`,
+				},
+				{
+					label: title,
+					href: Astro.url.pathname,
+				},
+			]}
+		/>
+
+		<article>
+			<header class="article-header">
+				<p class="eyebrow">{categoryLabel}</p>
+
+				<h1>{title}</h1>
+
+				<p class="article-description">
+					{description}
+				</p>
+
+				<div class="article-meta">
+					<span>
+						Publié le <FormattedDate date={pubDate} />
+					</span>
+
+					{
+						updatedDate && (
+							<span>
+								Mis à jour le <FormattedDate date={updatedDate} />
+							</span>
+						)
+					}
+				</div>
+			</header>
+
+			{
+				affiliate && <AffiliateDisclosure />
+			}
+
+			{
+				heroImage && (
+					<div class="article-hero-image">
+						<Image
+							src={heroImage}
+							width={1200}
+							height={630}
+							alt={title}
+						/>
+					</div>
+				)
+			}
+
+			<div class="prose">
+				<slot />
+			</div>
+		</article>
+	</div>
+</BaseLayout>

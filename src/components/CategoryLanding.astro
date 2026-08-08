@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import type { CategorySlug } from '../consts';
+import { getPostPath, getPublishedPosts } from '../lib/content';
+
+interface Props {
+	category: CategorySlug;
+	title: string;
+	description: string;
+	intro: string;
+}
+
+const {
+	category,
+	title,
+	description,
+	intro,
+} = Astro.props;
+
+const posts = await getPublishedPosts(category);
+
+const siteBase = Astro.site ?? new URL(Astro.url.origin);
+
+const collectionSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: title,
+	description,
+	url: new URL(`/${category}/`, siteBase).href,
+};
+---
+
+<BaseLayout
+	title={title}
+	description={description}
+	schemas={[collectionSchema]}
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{ label: title, href: `/${category}/` },
+			]}
+		/>
+
+		<header class="page-header">
+			<p class="eyebrow">Sélection éditoriale</p>
+
+			<h1>{title}</h1>
+
+			<p>{intro}</p>
+		</header>
+
+		{
+			posts.length > 0 ? (
+				<div class="article-grid">
+					{
+						posts.map((post) => (
+							<article class="article-card">
+								<p class="article-category">
+									{post.data.category}
+								</p>
+
+								<h2>
+									<a href={getPostPath(post)}>
+										{post.data.title}
+									</a>
+								</h2>
+
+								<p>{post.data.description}</p>
+							</article>
+						))
+					}
+				</div>
+			) : (
+				<div class="empty-state">
+					<h2>Nos premiers contenus arrivent bientôt.</h2>
+
+					<p>
+						Nous préparons actuellement les premières analyses de cette catégorie.
+					</p>
+				</div>
+			)
+		}
+	</div>
+</BaseLayout>

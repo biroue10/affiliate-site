@@ -1,0 +1,75 @@
+---
+import type { ImageMetadata } from 'astro';
+
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_LANG } from '../consts';
+
+interface Props {
+	title: string;
+	description: string;
+	image?: ImageMetadata | string;
+	canonical?: string;
+	noindex?: boolean;
+	type?: 'website' | 'article';
+	publishedTime?: Date;
+	modifiedTime?: Date;
+	adultContent?: boolean;
+	schemas?: Record<string, unknown>[];
+}
+
+const {
+	title,
+	description,
+	image,
+	canonical,
+	noindex = false,
+	type = 'website',
+	publishedTime,
+	modifiedTime,
+	adultContent = false,
+	schemas = [],
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE_LANG}>
+	<head>
+		<BaseHead
+			title={title}
+			description={description}
+			image={image}
+			canonical={canonical}
+			noindex={noindex}
+			type={type}
+			publishedTime={publishedTime}
+			modifiedTime={modifiedTime}
+			adultContent={adultContent}
+		/>
+
+		{
+			schemas.map((schema) => (
+				<script
+					type="application/ld+json"
+					is:inline
+					set:html={JSON.stringify(schema)}
+				/>
+			))
+		}
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main-content">
+			Aller au contenu
+		</a>
+
+		<Header />
+
+		<main id="main-content">
+			<slot />
+		</main>
+
+		<Footer />
+	</body>
+</html>
