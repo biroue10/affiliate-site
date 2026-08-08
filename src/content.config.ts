@@ -48,6 +48,27 @@ const blog = defineCollection({
 
 			noindex: z.boolean().default(false),
 
+			verdict: z.string().max(600).optional(),
+
+			pros: z.array(z.string()).max(10).default([]),
+
+			cons: z.array(z.string()).max(10).default([]),
+
+			faq: z.array(
+				z.object({
+					question: z.string().min(5),
+					answer: z.string().min(10),
+				}),
+			).max(12).default([]),
+
+			sources: z.array(
+				z.object({
+					name: z.string(),
+					url: z.url(),
+				}),
+			).max(20).default([]),
+
+
 			canonical: z.url().optional(),
 		}),
 });

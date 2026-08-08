@@ -4,11 +4,31 @@ import type { CollectionEntry } from 'astro:content';
 
 import AffiliateDisclosure from '../components/AffiliateDisclosure.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FAQBlock from '../components/FAQBlock.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_CATEGORIES, SITE_TITLE } from '../consts';
+import ProsCons from '../components/ProsCons.astro';
+import SourcesBlock from '../components/SourcesBlock.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import VerdictBox from '../components/VerdictBox.astro';
+
+import {
+	SITE_CATEGORIES,
+	SITE_TITLE,
+} from '../consts';
+
 import BaseLayout from './BaseLayout.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+interface Heading {
+	depth: number;
+	slug: string;
+	text: string;
+}
+
+type ArticleData = CollectionEntry<'blog'>['data'];
+
+type Props = ArticleData & {
+	headings?: Heading[];
+};
 
 const {
 	title,
@@ -22,6 +42,12 @@ const {
 	adultContent,
 	noindex,
 	canonical,
+	verdict,
+	pros,
+	cons,
+	faq,
+	sources,
+	headings = [],
 } = Astro.props;
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
@@ -62,6 +88,28 @@ const articleSchema = {
 			}
 		: {}),
 };
+
+const faqSchema =
+	faq.length > 0
+		? {
+				'@context': 'https://schema.org',
+				'@type': 'FAQPage',
+
+				mainEntity: faq.map((item) => ({
+					'@type': 'Question',
+					name: item.question,
+
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: item.answer,
+					},
+				})),
+			}
+		: null;
+
+const schemas = faqSchema
+	? [articleSchema, faqSchema]
+	: [articleSchema];
 ---
 
 <BaseLayout
@@ -74,7 +122,7 @@ const articleSchema = {
 	publishedTime={pubDate}
 	modifiedTime={updatedDate ?? pubDate}
 	adultContent={adultContent}
-	schemas={[articleSchema]}
+	schemas={schemas}
 >
 	<div class="container article-shell">
 		<Breadcrumbs
@@ -103,6 +151,10 @@ const articleSchema = {
 
 				<div class="article-meta">
 					<span>
+						Par {author}
+					</span>
+
+					<span>
 						Publié le <FormattedDate date={pubDate} />
 					</span>
 
@@ -116,9 +168,7 @@ const articleSchema = {
 				</div>
 			</header>
 
-			{
-				affiliate && <AffiliateDisclosure />
-			}
+			{affiliate && <AffiliateDisclosure />}
 
 			{
 				heroImage && (
@@ -133,8 +183,19 @@ const articleSchema = {
 				)
 			}
 
+			<TableOfContents headings={headings} />
+
+			{verdict && <VerdictBox text={verdict} />}
+
+			<ProsCons pros={pros} cons={cons} />
+
 			<div class="prose">
 				<slot />
+			</div>
+
+			<div class="article-after-content">
+				<FAQBlock items={faq} />
+				<SourcesBlock sources={sources} />
 			</div>
 		</article>
 	</div>

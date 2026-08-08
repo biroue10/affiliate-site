@@ -1,0 +1,30 @@
+---
+interface Props {
+	href: string;
+	label?: string;
+	partner?: string;
+	position?: string;
+}
+
+const {
+	href,
+	label = 'Voir l’offre',
+	partner = 'unknown',
+	position = 'article',
+} = Astro.props;
+---
+
+<div class="affiliate-cta">
+	<a
+		class="affiliate-button"
+		href={href}
+		target="_blank"
+		rel="sponsored nofollow noopener noreferrer"
+		data-affiliate-partner={partner}
+		data-affiliate-position={position}
+	>
+		{label}
+	</a>
+
+	<small>Lien partenaire — nous pouvons recevoir une commission.</small>
+</div>
