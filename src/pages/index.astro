@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryIcon from '../components/CategoryIcon.astro';
 
 import {
 	SITE_CATEGORIES,
@@ -34,14 +35,20 @@ const websiteSchema = {
 	schemas={[websiteSchema]}
 >
 	<section class="hero">
-		<div class="container">
+		<div class="container hero-inner">
 			<p class="eyebrow">Guides · Avis · Comparatifs</p>
 
-			<h1>{SITE_TAGLINE}</h1>
+			<h1>
+				Comparer, comprendre
+				<br />
+				et choisir en
+				<br />
+				connaissance de cause<span class="title-dot">.</span>
+			</h1>
 
 			<p class="hero-description">
-				Des analyses indépendantes pour comparer les plateformes,
-				comprendre leurs avantages et identifier leurs limites.
+				Des analyses indépendantes pour comparer les plateformes, comprendre leurs
+				avantages et identifier leurs limites.
 			</p>
 
 			<a class="primary-button" href="/comparatifs/">
@@ -54,22 +61,52 @@ const websiteSchema = {
 		<header class="section-heading">
 			<p class="eyebrow">Explorer</p>
 
-			<h2>Nos catégories</h2>
+			<h2 class="decorated-title">
+				Nos catégories
+				<span class="title-flourish" aria-hidden="true">❦</span>
+			</h2>
 		</header>
 
 		<div class="category-grid">
-			{
-				SITE_CATEGORIES.map((category) => (
-					<a
-						class="category-card"
-						href={`/${category.slug}/`}
-					>
-						<h3>{category.label}</h3>
+			<a class="category-card" href="/avis/">
+				<CategoryIcon type="avis" />
+				<div>
+					<h3>Avis</h3>
+					<p>Analyses détaillées de plateformes et services.</p>
+				</div>
+			</a>
 
-						<p>{category.description}</p>
-					</a>
-				))
-			}
+			<a class="category-card" href="/comparatifs/">
+				<CategoryIcon type="comparatifs" />
+				<div>
+					<h3>Comparatifs</h3>
+					<p>Comparaisons directes entre plusieurs services.</p>
+				</div>
+			</a>
+
+			<a class="category-card" href="/guides/">
+				<CategoryIcon type="guides" />
+				<div>
+					<h3>Guides</h3>
+					<p>Conseils pratiques, sécurité et confidentialité.</p>
+				</div>
+			</a>
+
+			<a class="category-card" href="/rencontres/">
+				<CategoryIcon type="rencontres" />
+				<div>
+					<h3>Rencontres</h3>
+					<p>Guides et comparatifs autour des rencontres pour adultes.</p>
+				</div>
+			</a>
+
+			<a class="category-card" href="/ai/">
+				<CategoryIcon type="ai" />
+				<div>
+					<h3>Compagnons IA</h3>
+					<p>Analyses des services de compagnons et partenaires IA.</p>
+				</div>
+			</a>
 		</div>
 	</section>
 

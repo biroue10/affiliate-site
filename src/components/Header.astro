@@ -1,5 +1,6 @@
 ---
-import { SITE_CATEGORIES, SITE_TITLE } from '../consts';
+import Logo from './Logo.astro';
+import { SITE_CATEGORIES } from '../consts';
 
 const pathname = Astro.url.pathname;
 
@@ -9,9 +10,7 @@ const isActive = (path: string) =>
 
 <header class="site-header">
 	<div class="container header-inner">
-		<a class="site-logo" href="/">
-			{SITE_TITLE}
-		</a>
+		<Logo size="md" />
 
 		<nav class="main-nav" aria-label="Navigation principale">
 			{

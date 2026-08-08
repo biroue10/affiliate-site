@@ -1,20 +1,20 @@
 ---
-import { SITE_TITLE } from '../consts';
+import Logo from './Logo.astro';
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
 	<div class="container footer-grid">
-		<div>
-			<strong>{SITE_TITLE}</strong>
+		<div class="footer-brand">
+			<Logo size="lg" />
 
 			<p>
 				Avis, comparatifs et guides indépendants destinés à un public adulte.
 			</p>
 		</div>
 
-		<nav aria-label="Informations">
+		<nav class="footer-links" aria-label="Informations">
 			<a href="/a-propos/">À propos</a>
 			<a href="/affiliation/">Affiliation</a>
 			<a href="/confidentialite/">Confidentialité</a>
@@ -23,12 +23,7 @@ const year = new Date().getFullYear();
 	</div>
 
 	<div class="container footer-bottom">
-		<p>
-			© {year} {SITE_TITLE}. Tous droits réservés.
-		</p>
-
-		<p>
-			Ce site n'héberge aucun contenu sexuellement explicite.
-		</p>
+		<p>© {year} Clairlia. Tous droits réservés.</p>
+		<p>Ce site n’héberge aucun contenu sexuellement explicite.</p>
 	</div>
 </footer>
