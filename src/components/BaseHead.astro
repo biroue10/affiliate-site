@@ -4,7 +4,6 @@ import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import { Font } from 'astro:assets';
 
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
 
 import {
 	SITE_AUTHOR,
@@ -28,7 +27,7 @@ interface Props {
 const {
 	title,
 	description,
-	image = FallbackImage,
+	image = '/og-default.png',
 	canonical,
 	noindex = false,
 	type = 'website',
@@ -64,7 +63,8 @@ const robotsContent = effectiveNoindex
 <Font cssVariable="--font-atkinson" preload />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#ee5f91" />
 
 <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -93,6 +93,7 @@ const robotsContent = effectiveNoindex
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageURL} />
+<meta property="og:image:alt" content={title} />
 <meta property="og:site_name" content={SITE_TITLE} />
 <meta property="og:locale" content={SITE_LOCALE} />
 
@@ -114,6 +115,7 @@ const robotsContent = effectiveNoindex
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageURL} />
+<meta name="twitter:image:alt" content={title} />
 
 <!-- Only use this flag for pages containing explicit adult content -->
 {adultContent && <meta name="rating" content="adult" />}
