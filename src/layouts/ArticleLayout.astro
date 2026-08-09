@@ -75,6 +75,7 @@ const articleSchema = {
 	author: {
 		'@type': 'Organization',
 		name: author,
+		url: new URL('/equipe-editoriale/', siteBase).href,
 	},
 
 	publisher: {
@@ -151,7 +152,7 @@ const schemas = faqSchema
 
 				<div class="article-meta">
 					<span>
-						Par {author}
+						Par <a href="/equipe-editoriale/">{author}</a>
 					</span>
 
 					<span>

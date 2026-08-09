@@ -1,0 +1,66 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Politique de corrections"
+	description="Comment Clairlia traite les erreurs factuelles, les informations devenues obsolètes et les corrections apportées à ses contenus."
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{ label: 'Corrections', href: '/corrections/' },
+			]}
+		/>
+
+		<div class="prose">
+			<h1>Politique de corrections</h1>
+
+			<p>
+				Clairlia cherche à maintenir des informations exactes et à jour.
+				Cependant, les services que nous couvrons peuvent modifier leurs
+				prix, fonctionnalités ou politiques sans préavis.
+			</p>
+
+			<h2>Ce que nous corrigeons</h2>
+
+			<ul>
+				<li>prix ou fonctionnalités incorrects ;</li>
+				<li>liens devenus invalides ;</li>
+				<li>erreurs factuelles ;</li>
+				<li>informations attribuées à tort à une source ;</li>
+				<li>changements significatifs dans les conditions d'un service.</li>
+			</ul>
+
+			<h2>Modifications importantes</h2>
+
+			<p>
+				Lorsqu'une mise à jour modifie substantiellement le contenu ou la
+				conclusion d'un article, la date de mise à jour peut être modifiée
+				afin de refléter cette révision.
+			</p>
+
+			<h2>Modifications mineures</h2>
+
+			<p>
+				Les corrections typographiques, grammaticales ou purement
+				présentationnelles ne nécessitent pas systématiquement une nouvelle
+				date de mise à jour.
+			</p>
+
+			<h2>Signaler une erreur</h2>
+
+			<p>
+				Les informations permettant de contacter Clairlia sont disponibles
+				sur notre page Contact. Nous privilégions les demandes accompagnées
+				d'une source permettant de vérifier la correction proposée.
+			</p>
+
+			<p>
+				<a href="/contact/">Accéder à la page Contact</a>
+			</p>
+		</div>
+	</div>
+</BaseLayout>
