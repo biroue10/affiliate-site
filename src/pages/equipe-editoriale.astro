@@ -1,0 +1,59 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Équipe éditoriale"
+	description="Découvrez le rôle de l'équipe éditoriale Clairlia et la manière dont nos contenus sont préparés et vérifiés."
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{ label: 'Équipe éditoriale', href: '/equipe-editoriale/' },
+			]}
+		/>
+
+		<div class="prose">
+			<h1>Équipe éditoriale Clairlia</h1>
+
+			<p>
+				Les contenus signés « Équipe éditoriale Clairlia » sont préparés
+				dans le cadre du processus éditorial du site.
+			</p>
+
+			<p>
+				Notre travail consiste notamment à rechercher les sources,
+				identifier les différences importantes entre les services,
+				vérifier les informations commerciales disponibles et présenter
+				les limites qui peuvent influencer une décision.
+			</p>
+
+			<h2>Notre responsabilité</h2>
+
+			<p>
+				L'utilisation éventuelle d'outils automatisés ou d'intelligence
+				artificielle n'enlève pas la responsabilité de vérifier les
+				informations importantes avant publication.
+			</p>
+
+			<h2>Notre méthodologie</h2>
+
+			<p>
+				Pour plus de détails sur notre processus de recherche et de
+				comparaison, consultez notre
+				<a href="/methodologie/">méthodologie éditoriale</a>.
+			</p>
+
+			<h2>Indépendance</h2>
+
+			<p>
+				Consultez également notre
+				<a href="/politique-editoriale/">politique éditoriale</a>
+				et notre page consacrée à
+				<a href="/affiliation/">l'affiliation</a>.
+			</p>
+		</div>
+	</div>
+</BaseLayout>

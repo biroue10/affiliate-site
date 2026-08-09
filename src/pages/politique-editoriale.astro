@@ -1,0 +1,80 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Politique éditoriale"
+	description="Principes d'indépendance, de transparence, de vérification et d'utilisation des outils d'intelligence artificielle chez Clairlia."
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{ label: 'Politique éditoriale', href: '/politique-editoriale/' },
+			]}
+		/>
+
+		<div class="prose">
+			<h1>Politique éditoriale</h1>
+
+			<h2>Notre objectif</h2>
+
+			<p>
+				Clairlia cherche à produire des contenus utiles aux personnes qui
+				veulent comparer ou comprendre des services en ligne avant de prendre
+				une décision.
+			</p>
+
+			<h2>Indépendance</h2>
+
+			<p>
+				Nos conclusions ne doivent pas être dictées par les commissions
+				d'affiliation, les partenariats ou le niveau de rémunération proposé
+				par une plateforme.
+			</p>
+
+			<h2>Transparence</h2>
+
+			<p>
+				Lorsqu'une page contient des liens d'affiliation, Clairlia l'indique
+				au lecteur.
+			</p>
+
+			<p>
+				Nous distinguons également autant que possible les informations
+				vérifiées directement des déclarations provenant d'un éditeur.
+			</p>
+
+			<h2>Utilisation de l'intelligence artificielle</h2>
+
+			<p>
+				Des outils d'intelligence artificielle peuvent être utilisés comme
+				assistance pour la recherche, la structuration, la reformulation ou
+				la préparation de contenus.
+			</p>
+
+			<p>
+				Ils ne remplacent pas la responsabilité éditoriale. Les informations
+				factuelles importantes doivent être vérifiées à partir des sources
+				disponibles avant publication.
+			</p>
+
+			<h2>Contenu destiné aux adultes</h2>
+
+			<p>
+				Clairlia peut analyser des services réservés aux adultes, mais le
+				site n'a pas pour objectif d'héberger du contenu sexuellement explicite.
+			</p>
+
+			<h2>Erreurs</h2>
+
+			<p>
+				Une information publiée peut devenir obsolète ou être incorrecte.
+				Lorsqu'une erreur vérifiable est identifiée, notre objectif est de
+				la corriger plutôt que de la maintenir pour préserver une conclusion
+				ancienne.
+			</p>
+		</div>
+	</div>
+</BaseLayout>

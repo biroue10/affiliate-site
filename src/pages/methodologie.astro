@@ -1,0 +1,110 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Méthodologie éditoriale"
+	description="Découvrez comment Clairlia recherche, vérifie, compare et met à jour les informations publiées dans ses avis, guides et comparatifs."
+>
+	<div class="container page-shell">
+		<Breadcrumbs
+			items={[
+				{ label: 'Accueil', href: '/' },
+				{ label: 'Méthodologie', href: '/methodologie/' },
+			]}
+		/>
+
+		<div class="prose">
+			<h1>Méthodologie éditoriale</h1>
+
+			<p>
+				Clairlia publie des avis, comparatifs et guides destinés à aider
+				les lecteurs à comprendre les caractéristiques, les prix, les
+				limites et les politiques de services en ligne.
+			</p>
+
+			<h2>Nos sources</h2>
+
+			<p>
+				Nous privilégions les sources primaires lorsque cela est possible :
+				sites officiels, pages tarifaires, centres d'aide, conditions
+				d'utilisation, politiques de confidentialité et documentation
+				publiée par les éditeurs.
+			</p>
+
+			<p>
+				Lorsque nous utilisons des informations provenant d'autres sources,
+				nous cherchons à distinguer clairement les faits vérifiables,
+				les déclarations des éditeurs et notre propre analyse.
+			</p>
+
+			<h2>Testé, observé ou documenté</h2>
+
+			<p>
+				Clairlia ne présente pas un produit comme ayant été testé lorsqu'il
+				n'a fait l'objet que d'une analyse documentaire.
+			</p>
+
+			<p>
+				Nous pouvons distinguer trois niveaux d'information :
+			</p>
+
+			<ul>
+				<li>
+					<strong>Testé :</strong> fonctionnalité ou service utilisé
+					directement par notre équipe.
+				</li>
+				<li>
+					<strong>Observé :</strong> élément directement visible sur
+					l'interface ou le site du service.
+				</li>
+				<li>
+					<strong>Selon l'éditeur :</strong> information provenant de la
+					documentation officielle mais non vérifiée indépendamment.
+				</li>
+			</ul>
+
+			<h2>Prix et fonctionnalités</h2>
+
+			<p>
+				Les prix, promotions, crédits et fonctionnalités peuvent changer.
+				Lorsqu'une donnée commerciale est importante, nous indiquons autant
+				que possible la date à laquelle elle a été vérifiée.
+			</p>
+
+			<p>
+				Un prix ancien n'est pas conservé volontairement pour donner
+				l'impression qu'une offre est plus intéressante qu'elle ne l'est.
+			</p>
+
+			<h2>Comparaisons</h2>
+
+			<p>
+				Nous cherchons à comparer les services selon des critères utiles au
+				lecteur : fonctionnalités, tarification, limitations, confidentialité,
+				facilité d'annulation et public auquel le produit paraît destiné.
+			</p>
+
+			<h2>Affiliation</h2>
+
+			<p>
+				La disponibilité ou le niveau d'une commission d'affiliation ne doit
+				pas déterminer le classement éditorial d'un service.
+			</p>
+
+			<p>
+				Une plateforme peut être critiquée, déconseillée ou exclue d'une
+				sélection même si elle propose un programme d'affiliation.
+			</p>
+
+			<h2>Mises à jour</h2>
+
+			<p>
+				Une date de mise à jour n'est ajoutée que lorsqu'une modification
+				significative a été apportée ou qu'une vérification importante a
+				été effectuée.
+			</p>
+		</div>
+	</div>
+</BaseLayout>
