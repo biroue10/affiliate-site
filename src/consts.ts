@@ -1,4 +1,4 @@
-export const SITE_TITLE = 'NomDuSite';
+export const SITE_TITLE = 'Clairlia';
 
 export const SITE_DESCRIPTION =
 	'Avis, comparatifs et guides indépendants sur les services de rencontre et les compagnons IA pour adultes.';

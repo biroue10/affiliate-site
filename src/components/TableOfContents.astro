@@ -12,7 +12,7 @@ interface Props {
 const { headings } = Astro.props;
 
 const visibleHeadings = headings.filter(
-	({ depth }) => depth === 2 || depth === 3,
+	({ depth }) => depth === 2,
 );
 ---
 
