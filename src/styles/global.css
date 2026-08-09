@@ -31,7 +31,9 @@ body {
 	margin: 0;
 	background: var(--background);
 	color: var(--text);
-	font-family: var(--font-atkinson), system-ui, sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	font-feature-settings: "zero" 0;
+	font-variant-numeric: normal;
 	font-size: 18px;
 	line-height: 1.65;
 }
@@ -681,7 +683,7 @@ svg {
 }
 
 .article-header {
-	max-width: 860px;
+	max-width: 900px;
 }
 
 .prose {
