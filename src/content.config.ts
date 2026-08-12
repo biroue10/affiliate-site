@@ -78,6 +78,8 @@ const blog = defineCollection({
 				}),
 			).max(20).default([]),
 
+			sourcesTitle: z.string().min(5).max(80).optional(),
+
 
 			canonical: z.url().optional(),
 		}),

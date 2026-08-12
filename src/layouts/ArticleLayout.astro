@@ -48,6 +48,7 @@ const {
 	cons,
 	faq,
 	sources,
+	sourcesTitle,
 	headings = [],
 } = Astro.props;
 
@@ -197,7 +198,7 @@ const schemas = faqSchema
 
 			<div class="article-after-content">
 				<FAQBlock items={faq} />
-				<SourcesBlock sources={sources} />
+				<SourcesBlock sources={sources} title={sourcesTitle} />
 			</div>
 		</article>
 	</div>
