@@ -42,6 +42,10 @@ const blog = defineCollection({
 				])
 				.default('guides'),
 
+			editorialType: z
+				.enum(['avis'])
+				.optional(),
+
 			tags: z.array(z.string()).default([]),
 
 			heroImage: z.optional(image()),

@@ -2,7 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from './Breadcrumbs.astro';
 import type { CategorySlug } from '../consts';
-import { getPostPath, getPublishedPosts } from '../lib/content';
+import {
+	getPostPath,
+	getPublishedPosts,
+	getPublishedReviews,
+} from '../lib/content';
 
 interface Props {
 	category: CategorySlug;
@@ -18,7 +22,10 @@ const {
 	intro,
 } = Astro.props;
 
-const posts = await getPublishedPosts(category);
+const posts =
+	category === 'avis'
+		? await getPublishedReviews()
+		: await getPublishedPosts(category);
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
 

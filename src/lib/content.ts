@@ -19,6 +19,15 @@ export async function getPublishedPosts(category?: CategorySlug) {
 	);
 }
 
+export async function getPublishedReviews() {
+	const posts = await getPublishedPosts();
+
+	return posts.filter(
+		({ data }) =>
+			data.category === 'avis' || data.editorialType === 'avis',
+	);
+}
+
 export function getPostPath(post: CollectionEntry<'blog'>) {
 	return `/${post.data.category}/${post.id}/`;
 }
