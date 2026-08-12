@@ -91,46 +91,29 @@ svg {
 	color: var(--text);
 }
 
-.logo-word {
-	position: relative;
-	display: inline-flex;
-	align-items: baseline;
-	font-family: Georgia, "Times New Roman", serif;
-	letter-spacing: -0.03em;
-	line-height: 1;
-}
-
-.logo-md .logo-word {
-	font-size: 2.15rem;
-}
-
-.logo-lg .logo-word {
-	font-size: 2.55rem;
-}
-
-.logo-sm .logo-word {
-	font-size: 1.45rem;
-}
-
-.logo-i-wrap {
-	position: relative;
-	display: inline-block;
+.logo-image {
+	display: block;
 	width: auto;
-	margin: 0;
+	height: auto;
+	object-fit: contain;
 }
 
-.logo-stem {
-	display: inline;
+.logo-md .logo-image {
+	width: 142px;
 }
 
-.logo-petal {
-	position: absolute;
-	top: -0.3em;
-	left: 50%;
-	width: 0.38em;
-	height: 0.38em;
-	transform: translateX(-50%) rotate(-10deg);
-	color: var(--accent);
+.logo-lg .logo-image {
+	width: 170px;
+}
+
+.logo-sm .logo-image {
+	width: 108px;
+}
+
+@media (max-width: 720px) {
+	.logo-md .logo-image {
+		width: 132px;
+	}
 }
 
 
