@@ -1,7 +1,9 @@
 ---
+type Cell = string | { text: string; href: string };
+
 interface Props {
 	headers: string[];
-	rows: string[][];
+	rows: Cell[][];
 }
 
 const { headers, rows } = Astro.props;
@@ -19,7 +21,17 @@ const { headers, rows } = Astro.props;
 			{
 				rows.map((row) => (
 					<tr>
-						{row.map((cell) => <td>{cell}</td>)}
+						{
+							row.map((cell) => (
+								<td>
+									{typeof cell === 'string' ? (
+										cell
+									) : (
+										<a href={cell.href}>{cell.text}</a>
+									)}
+								</td>
+							))
+						}
 					</tr>
 				))
 			}

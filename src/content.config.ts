@@ -15,6 +15,12 @@ const blog = defineCollection({
 				.min(10, 'Le titre est trop court.')
 				.max(70, 'Le titre dépasse 70 caractères.'),
 
+			seoTitle: z
+				.string()
+				.min(10, 'Le title SEO est trop court.')
+				.max(70, 'Le title SEO dépasse 70 caractères.')
+				.optional(),
+
 			description: z
 				.string()
 				.min(50, 'La meta description est trop courte.')

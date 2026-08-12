@@ -32,6 +32,7 @@ type Props = ArticleData & {
 
 const {
 	title,
+	seoTitle,
 	description,
 	pubDate,
 	updatedDate,
@@ -114,7 +115,7 @@ const schemas = faqSchema
 ---
 
 <BaseLayout
-	title={title}
+	title={seoTitle ?? title}
 	description={description}
 	image={heroImage}
 	canonical={canonical}
