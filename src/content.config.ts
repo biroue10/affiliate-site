@@ -50,6 +50,8 @@ const blog = defineCollection({
 
 			heroImage: z.optional(image()),
 
+			heroAlt: z.string().min(10).max(180).optional(),
+
 			draft: z.boolean().default(false),
 
 			affiliate: z.boolean().default(false),

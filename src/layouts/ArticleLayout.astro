@@ -37,6 +37,7 @@ const {
 	pubDate,
 	updatedDate,
 	heroImage,
+	heroAlt,
 	author,
 	category,
 	affiliate,
@@ -178,9 +179,10 @@ const schemas = faqSchema
 					<div class="article-hero-image">
 						<Image
 							src={heroImage}
-							width={1200}
-							height={630}
-							alt={title}
+							width={1600}
+							height={900}
+							alt={heroAlt ?? title}
+							loading="eager"
 						/>
 					</div>
 				)

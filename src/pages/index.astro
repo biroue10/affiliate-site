@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 import CategoryIcon from '../components/CategoryIcon.astro';
 
 import {
@@ -120,6 +121,24 @@ const websiteSchema = {
 					{
 						latestPosts.map((post) => (
 							<article class="article-card">
+								{
+									post.data.heroImage && (
+										<a
+											class="article-card-image"
+											href={getPostPath(post)}
+											aria-label={`Lire : ${post.data.title}`}
+										>
+											<Image
+												src={post.data.heroImage}
+												width={800}
+												height={450}
+												alt={post.data.heroAlt ?? post.data.title}
+												loading="lazy"
+											/>
+										</a>
+									)
+								}
+
 								<p class="article-category">
 									{post.data.category}
 								</p>
