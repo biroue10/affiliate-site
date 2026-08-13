@@ -1,0 +1,28 @@
+<script is:inline>
+	document.addEventListener('click', (event) => {
+		const target = event.target instanceof Element
+			? event.target.closest('[data-affiliate-partner]')
+			: null;
+
+		if (!(target instanceof HTMLAnchorElement)) return;
+
+		const partner = target.dataset.affiliatePartner;
+		const articleSlug = target.dataset.affiliateSlug;
+
+		if (!partner) return;
+
+		const payload = { partner, article_slug: articleSlug };
+
+		window.dispatchEvent(
+			new CustomEvent('affiliate_click', { detail: payload }),
+		);
+
+		if (typeof window.gtag === 'function') {
+			window.gtag('event', 'affiliate_click', payload);
+		}
+
+		if (typeof window.plausible === 'function') {
+			window.plausible('affiliate_click', { props: payload });
+		}
+	});
+</script>

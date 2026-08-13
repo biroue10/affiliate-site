@@ -645,10 +645,10 @@ svg {
 	background: var(--accent-hover);
 }
 
-.affiliate-cta small {
-	display: block;
-	margin-top: 0.65rem;
+.affiliate-cta-disclosure {
+	margin: 0 0 0.85rem;
 	color: var(--text-muted);
+	font-size: 0.9rem;
 }
 
 .comparison-table-wrapper {

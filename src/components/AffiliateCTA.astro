@@ -4,6 +4,7 @@ interface Props {
 	label?: string;
 	partner?: string;
 	position?: string;
+	articleSlug?: string;
 }
 
 const {
@@ -11,20 +12,24 @@ const {
 	label = 'Voir l’offre',
 	partner = 'unknown',
 	position = 'article',
+	articleSlug,
 } = Astro.props;
 ---
 
 <div class="affiliate-cta">
+	<p class="affiliate-cta-disclosure">
+		Certains liens peuvent être partenaires. Cela peut nous rémunérer, sans frais supplémentaires pour vous.
+	</p>
+
 	<a
 		class="affiliate-button"
 		href={href}
 		target="_blank"
-		rel="sponsored nofollow noopener noreferrer"
+		rel="sponsored noopener noreferrer"
 		data-affiliate-partner={partner}
 		data-affiliate-position={position}
+		data-affiliate-slug={articleSlug}
 	>
 		{label}
 	</a>
-
-	<small>Lien partenaire — nous pouvons recevoir une commission.</small>
 </div>
