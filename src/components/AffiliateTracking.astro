@@ -7,11 +7,15 @@
 		if (!(target instanceof HTMLAnchorElement)) return;
 
 		const partner = target.dataset.affiliatePartner;
-		const articleSlug = target.dataset.affiliateSlug;
+		const pageSlug = target.dataset.affiliateSlug;
 
 		if (!partner) return;
 
-		const payload = { partner, article_slug: articleSlug };
+		const payload = {
+			event: 'affiliate_click',
+			partner,
+			page_slug: pageSlug,
+		};
 
 		window.dispatchEvent(
 			new CustomEvent('affiliate_click', { detail: payload }),
