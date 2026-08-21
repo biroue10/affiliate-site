@@ -13,7 +13,7 @@ const blog = defineCollection({
 			title: z
 				.string()
 				.min(10, 'Le titre est trop court.')
-				.max(70, 'Le titre dépasse 70 caractères.'),
+				.max(100, 'Le titre dépasse 100 caractères.'),
 
 			seoTitle: z
 				.string()
