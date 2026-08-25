@@ -4,6 +4,8 @@ import {
 	readFileSync,
 } from 'node:fs';
 
+import { getContentLastModified } from './get-noindex-paths.mjs';
+
 import {
 	join,
 	relative,
@@ -441,6 +443,30 @@ if (productionBuild) {
 				`${page.route}: page indexable absente du sitemap`,
 			);
 		}
+	}
+}
+
+for (const page of pageData) {
+	if (!page.canonical || page.noindex) {
+		continue;
+	}
+
+	const expectedLastmod = getContentLastModified(page.route);
+
+	if (!expectedLastmod) {
+		continue;
+	}
+
+	const sitemapFile = sitemapFiles.find((file) =>
+		readFileSync(join(DIST_DIR, file), 'utf8').includes(page.canonical),
+	);
+	const xml = sitemapFile
+		? readFileSync(join(DIST_DIR, sitemapFile), 'utf8')
+		: '';
+	const expectedEntry = `<loc>${page.canonical}</loc><lastmod>${expectedLastmod.toISOString()}</lastmod>`;
+
+	if (!xml.includes(expectedEntry)) {
+		fail(`${page.route}: lastmod absent ou incorrect dans le sitemap`);
 	}
 }
 
