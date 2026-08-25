@@ -1,10 +1,11 @@
-<aside class="affiliate-disclosure" aria-label="Information sur l'affiliation">
-	<strong>Transparence :</strong>
+---
+interface Props { language?: 'fr' | 'en'; }
+const { language = 'fr' } = Astro.props;
+---
+<aside class="affiliate-disclosure" aria-label={language === 'en' ? 'Affiliate disclosure' : "Information sur l'affiliation"}>
+	<strong>{language === 'en' ? 'Disclosure:' : 'Transparence :'}</strong>
 
 	<p>
-		Certains liens présents sur cette page peuvent être des liens partenaires.
-		Si vous utilisez l'un de ces liens pour vous inscrire ou effectuer un achat,
-		nous pouvons recevoir une commission, sans coût supplémentaire pour vous.
-		Cela ne modifie pas nos critères éditoriaux.
+		{language === 'en' ? 'Some links may be affiliate links. We may earn a commission at no additional cost to you. This does not affect our editorial criteria.' : "Certains liens présents sur cette page peuvent être des liens partenaires. Si vous utilisez l'un de ces liens pour vous inscrire ou effectuer un achat, nous pouvons recevoir une commission, sans coût supplémentaire pour vous. Cela ne modifie pas nos critères éditoriaux."}
 	</p>
 </aside>

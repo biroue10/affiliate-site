@@ -1,5 +1,9 @@
 ---
 import Logo from './Logo.astro';
+import type { Locale } from '../lib/i18n';
+
+interface Props { language?: Locale; }
+const { language = 'fr' } = Astro.props;
 
 const year = new Date().getFullYear();
 ---
@@ -10,24 +14,24 @@ const year = new Date().getFullYear();
 			<Logo size="lg" />
 
 			<p>
-				Avis, comparatifs et guides indépendants destinés à un public adulte.
+				{language === 'en' ? 'Independent reviews, comparisons and guides for adults.' : 'Avis, comparatifs et guides indépendants destinés à un public adulte.'}
 			</p>
 		</div>
 
-		<nav class="footer-links" aria-label="Informations">
-			<a href="/a-propos/">À propos</a>
-			<a href="/methodologie/">Méthodologie</a>
-			<a href="/equipe-editoriale/">Équipe éditoriale</a>
-			<a href="/politique-editoriale/">Politique éditoriale</a>
-			<a href="/corrections/">Corrections</a>
-			<a href="/affiliation/">Affiliation</a>
-			<a href="/confidentialite/">Confidentialité</a>
-			<a href="/contact/">Contact</a>
+		<nav class="footer-links" aria-label={language === 'en' ? 'Information' : 'Informations'}>
+			<a href="/a-propos/">{language === 'en' ? 'About (in French)' : 'À propos'}</a>
+			<a href="/methodologie/">{language === 'en' ? 'Methodology (in French)' : 'Méthodologie'}</a>
+			<a href="/equipe-editoriale/">{language === 'en' ? 'Editorial team (in French)' : 'Équipe éditoriale'}</a>
+			<a href="/politique-editoriale/">{language === 'en' ? 'Editorial policy (in French)' : 'Politique éditoriale'}</a>
+			<a href="/corrections/">{language === 'en' ? 'Corrections (in French)' : 'Corrections'}</a>
+			<a href="/affiliation/">{language === 'en' ? 'Affiliate disclosure (in French)' : 'Affiliation'}</a>
+			<a href="/confidentialite/">{language === 'en' ? 'Privacy (in French)' : 'Confidentialité'}</a>
+			<a href="/contact/">{language === 'en' ? 'Contact (in French)' : 'Contact'}</a>
 		</nav>
 	</div>
 
 	<div class="container footer-bottom">
-		<p>© {year} Clairlia. Tous droits réservés.</p>
-		<p>Ce site n’héberge aucun contenu sexuellement explicite.</p>
+		<p>© {year} Clairlia. {language === 'en' ? 'All rights reserved.' : 'Tous droits réservés.'}</p>
+		<p>{language === 'en' ? 'This site does not host sexually explicit content.' : 'Ce site n’héberge aucun contenu sexuellement explicite.'}</p>
 	</div>
 </footer>

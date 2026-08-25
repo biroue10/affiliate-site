@@ -7,9 +7,10 @@ interface Heading {
 
 interface Props {
 	headings: Heading[];
+	language?: 'fr' | 'en';
 }
 
-const { headings } = Astro.props;
+const { headings, language = 'fr' } = Astro.props;
 
 const visibleHeadings = headings.filter(
 	({ depth }) => depth === 2,
@@ -18,8 +19,8 @@ const visibleHeadings = headings.filter(
 
 {
 	visibleHeadings.length > 1 && (
-		<nav class="toc" aria-label="Sommaire">
-			<p class="toc-title">Dans cet article</p>
+		<nav class="toc" aria-label={language === 'en' ? 'Table of contents' : 'Sommaire'}>
+			<p class="toc-title">{language === 'en' ? 'In this article' : 'Dans cet article'}</p>
 
 			<ol>
 				{

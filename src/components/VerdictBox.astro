@@ -1,15 +1,16 @@
 ---
 interface Props {
 	text: string;
+	language?: 'fr' | 'en';
 }
 
-const { text } = Astro.props;
+const { text, language = 'fr' } = Astro.props;
 ---
 
 <section class="verdict-box" aria-labelledby="verdict-title">
-	<p class="eyebrow">Notre verdict en bref</p>
+	<p class="eyebrow">{language === 'en' ? 'Our verdict, briefly' : 'Notre verdict en bref'}</p>
 
-	<h2 id="verdict-title">Ce qu’il faut retenir</h2>
+	<h2 id="verdict-title">{language === 'en' ? 'Key takeaway' : 'Ce qu’il faut retenir'}</h2>
 
 	<p>{text}</p>
 </section>

@@ -88,3 +88,47 @@ export function getAllNoindexPaths() {
 		]),
 	];
 }
+
+export function getContentLastModified(pathname) {
+	const files = walk(CONTENT_DIR).filter((file) =>
+		['.md', '.mdx'].includes(extname(file)),
+	);
+
+	for (const file of files) {
+		const source = readFileSync(file, 'utf8');
+		const frontmatterMatch = source.match(
+			/^---\s*\n([\s\S]*?)\n---/,
+		);
+
+		if (!frontmatterMatch) {
+			continue;
+		}
+
+		const frontmatter = frontmatterMatch[1];
+		const categoryMatch = frontmatter.match(
+			/^category:\s*["']?([^"'\s]+)["']?\s*$/m,
+		);
+		const dateMatch =
+			frontmatter.match(
+				/^updatedDate:\s*(\d{4}-\d{2}-\d{2})\s*$/m,
+			) ??
+			frontmatter.match(
+				/^pubDate:\s*(\d{4}-\d{2}-\d{2})\s*$/m,
+			);
+
+		if (!categoryMatch || !dateMatch) {
+			continue;
+		}
+
+		const slug = relative(CONTENT_DIR, file)
+			.replace(/\.(md|mdx)$/i, '')
+			.replaceAll('\\', '/');
+		const contentPath = `/${categoryMatch[1]}/${slug}/`;
+
+		if (contentPath === pathname) {
+			return new Date(`${dateMatch[1]}T00:00:00.000Z`);
+		}
+	}
+
+	return undefined;
+}
