@@ -1,0 +1,21 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { getPublishedEnglishPosts } from '../../../lib/content';
+import { ARTICLE_TRANSLATIONS } from '../../../lib/i18n';
+
+export async function getStaticPaths() {
+	const posts = await getPublishedEnglishPosts();
+	return posts.map((post) => {
+		const pair = ARTICLE_TRANSLATIONS[post.id as keyof typeof ARTICLE_TRANSLATIONS];
+		if (!pair) throw new Error(`Missing explicit FR/EN mapping for ${post.id}`);
+		const [, , category, slug] = pair.en.split('/');
+		return { params: { category, slug }, props: post };
+	});
+}
+
+const post = Astro.props as CollectionEntry<'blogEn'>;
+const { Content, headings } = await render(post);
+---
+
+<ArticleLayout {...post.data} headings={headings} language="en"><Content /></ArticleLayout>

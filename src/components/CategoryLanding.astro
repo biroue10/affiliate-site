@@ -4,16 +4,18 @@ import { Image } from 'astro:assets';
 import Breadcrumbs from './Breadcrumbs.astro';
 import type { CategorySlug } from '../consts';
 import {
-	getPostPath,
+	getPublishedEnglishPosts,
 	getPublishedPosts,
 	getPublishedReviews,
 } from '../lib/content';
+import { ARTICLE_TRANSLATIONS, CATEGORY_PATHS, type Locale } from '../lib/i18n';
 
 interface Props {
 	category: CategorySlug;
 	title: string;
 	description: string;
 	intro: string;
+	language?: Locale;
 }
 
 const {
@@ -21,21 +23,29 @@ const {
 	title,
 	description,
 	intro,
+	language = 'fr',
 } = Astro.props;
 
 const posts =
-	category === 'avis'
+	language === 'en'
+		? await getPublishedEnglishPosts(category)
+		: category === 'avis'
 		? await getPublishedReviews()
 		: await getPublishedPosts(category);
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
+const getEnglishPath = (id: string) => ARTICLE_TRANSLATIONS[id as keyof typeof ARTICLE_TRANSLATIONS]?.en ?? '/en/ai-companions/';
+const getCardPath = (id: string, category: string) => language === 'en'
+	? getEnglishPath(id)
+	: `/${category}/${id}/`;
 
 const collectionSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'CollectionPage',
 	name: title,
 	description,
-	url: new URL(`/${category}/`, siteBase).href,
+	url: new URL(language === 'en' ? CATEGORY_PATHS.en[category as keyof typeof CATEGORY_PATHS.en] : `/${category}/`, siteBase).href,
+	inLanguage: language,
 };
 ---
 
@@ -47,9 +57,10 @@ const collectionSchema = {
 	<div class="container page-shell">
 		<Breadcrumbs
 			items={[
-				{ label: 'Accueil', href: '/' },
-				{ label: title, href: `/${category}/` },
+				{ label: language === 'en' ? 'Home' : 'Accueil', href: language === 'en' ? '/en/ai-companions/' : '/' },
+				{ label: title, href: language === 'en' ? CATEGORY_PATHS.en[category as keyof typeof CATEGORY_PATHS.en] : `/${category}/` },
 			]}
+			language={language}
 		/>
 
 		<header class="page-header">
@@ -70,7 +81,7 @@ const collectionSchema = {
 									post.data.heroImage && (
 										<a
 											class="article-card-image"
-											href={getPostPath(post)}
+											href={getCardPath(post.id, post.data.category)}
 											aria-label={`Lire : ${post.data.title}`}
 										>
 											<Image
@@ -89,7 +100,7 @@ const collectionSchema = {
 								</p>
 
 								<h2>
-									<a href={getPostPath(post)}>
+									<a href={getCardPath(post.id, post.data.category)}>
 										{post.data.title}
 									</a>
 								</h2>
@@ -101,11 +112,8 @@ const collectionSchema = {
 				</div>
 			) : (
 				<div class="empty-state">
-					<h2>Nos premiers contenus arrivent bientôt.</h2>
-
-					<p>
-						Nous préparons actuellement les premières analyses de cette catégorie.
-					</p>
+					<h2>{language === 'en' ? 'Our first articles are coming soon.' : 'Nos premiers contenus arrivent bientôt.'}</h2>
+					<p>{language === 'en' ? 'We are preparing the first analyses in this category.' : 'Nous préparons actuellement les premières analyses de cette catégorie.'}</p>
 				</div>
 			)
 		}

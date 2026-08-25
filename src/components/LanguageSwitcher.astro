@@ -1,0 +1,13 @@
+---
+import { getAlternatePath, type Locale } from '../lib/i18n';
+interface Props { language: Locale; }
+const { language } = Astro.props;
+const fr = getAlternatePath(Astro.url.pathname, 'fr') ?? '/';
+const en = getAlternatePath(Astro.url.pathname, 'en') ?? '/en/ai-companions/';
+---
+
+<nav class="language-switcher" aria-label={language === 'en' ? 'Language selection' : 'Choix de langue'}>
+	<a href={fr} lang="fr" aria-current={language === 'fr' ? 'page' : undefined}>FR</a>
+	<span aria-hidden="true"> | </span>
+	<a href={en} lang="en" aria-current={language === 'en' ? 'page' : undefined}>EN</a>
+</nav>

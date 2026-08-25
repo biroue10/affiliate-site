@@ -15,6 +15,7 @@ import {
 	SITE_CATEGORIES,
 	SITE_TITLE,
 } from '../consts';
+import { CATEGORY_LABELS, CATEGORY_PATHS, type Locale } from '../lib/i18n';
 
 import BaseLayout from './BaseLayout.astro';
 
@@ -24,10 +25,11 @@ interface Heading {
 	text: string;
 }
 
-type ArticleData = CollectionEntry<'blog'>['data'];
+type ArticleData = CollectionEntry<'blog' | 'blogEn'>['data'];
 
 type Props = ArticleData & {
 	headings?: Heading[];
+	language?: Locale;
 };
 
 const {
@@ -51,6 +53,7 @@ const {
 	sources,
 	sourcesTitle,
 	headings = [],
+	language = 'fr',
 } = Astro.props;
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
@@ -63,7 +66,12 @@ const categoryInfo = SITE_CATEGORIES.find(
 	(item) => item.slug === category,
 );
 
-const categoryLabel = categoryInfo?.label ?? category;
+const categoryLabel = language === 'en'
+	? CATEGORY_LABELS.en[category as keyof typeof CATEGORY_LABELS.en]
+	: categoryInfo?.label ?? category;
+const categoryPath = language === 'en'
+	? CATEGORY_PATHS.en[category as keyof typeof CATEGORY_PATHS.en]
+	: `/${category}/`;
 
 const articleSchema = {
 	'@context': 'https://schema.org',
@@ -74,6 +82,7 @@ const articleSchema = {
 	mainEntityOfPage: pageURL.href,
 	datePublished: pubDate.toISOString(),
 	dateModified: (updatedDate ?? pubDate).toISOString(),
+	inLanguage: language,
 
 	author: {
 		'@type': 'Organization',
@@ -122,6 +131,7 @@ const schemas = faqSchema
 	image={heroImage}
 	canonical={canonical}
 	noindex={noindex}
+	language={language}
 	type="article"
 	publishedTime={pubDate}
 	modifiedTime={updatedDate ?? pubDate}
@@ -131,16 +141,17 @@ const schemas = faqSchema
 	<div class="container article-shell">
 		<Breadcrumbs
 			items={[
-				{ label: 'Accueil', href: '/' },
+				{ label: language === 'en' ? 'Home' : 'Accueil', href: language === 'en' ? '/en/ai-companions/' : '/' },
 				{
 					label: categoryLabel,
-					href: `/${category}/`,
+					href: categoryPath,
 				},
 				{
 					label: title,
 					href: Astro.url.pathname,
 				},
 			]}
+			language={language}
 		/>
 
 		<article>
@@ -155,24 +166,24 @@ const schemas = faqSchema
 
 				<div class="article-meta">
 					<span>
-						Par <a href="/equipe-editoriale/">{author}</a>
+						{language === 'en' ? 'By' : 'Par'} <a href="/equipe-editoriale/">{author}</a>{language === 'en' && ' (in French)'}
 					</span>
 
 					<span>
-						Publié le <FormattedDate date={pubDate} />
+						{language === 'en' ? 'Published' : 'Publié le'} <FormattedDate date={pubDate} language={language} />
 					</span>
 
 					{
 						updatedDate && (
 							<span>
-								Mis à jour le <FormattedDate date={updatedDate} />
+							{language === 'en' ? 'Updated' : 'Mis à jour le'} <FormattedDate date={updatedDate} language={language} />
 							</span>
 						)
 					}
 				</div>
 			</header>
 
-			{affiliate && <AffiliateDisclosure />}
+			{affiliate && <AffiliateDisclosure language={language} />}
 
 			{
 				heroImage && (
@@ -190,17 +201,17 @@ const schemas = faqSchema
 
 			{verdict && <VerdictBox text={verdict} />}
 
-			<TableOfContents headings={headings} />
+			<TableOfContents headings={headings} language={language} />
 
-			<ProsCons pros={pros} cons={cons} />
+			<ProsCons pros={pros} cons={cons} language={language} />
 
 			<div class="prose">
 				<slot />
 			</div>
 
 			<div class="article-after-content">
-				<FAQBlock items={faq} />
-				<SourcesBlock sources={sources} title={sourcesTitle} />
+				<FAQBlock items={faq} language={language} />
+				<SourcesBlock sources={sources} title={sourcesTitle ?? (language === 'en' ? 'Sources' : undefined)} />
 			</div>
 		</article>
 	</div>

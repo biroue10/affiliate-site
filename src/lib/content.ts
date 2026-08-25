@@ -19,6 +19,15 @@ export async function getPublishedPosts(category?: CategorySlug) {
 	);
 }
 
+export async function getPublishedEnglishPosts(category?: CategorySlug) {
+	const posts = (await getCollection('blogEn')).filter(({ data }) => {
+		if (data.draft === true) return false;
+		return !category || data.category === category;
+	});
+
+	return posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+}
+
 export async function getPublishedReviews() {
 	const posts = await getPublishedPosts();
 

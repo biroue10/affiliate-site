@@ -5,6 +5,7 @@ interface Props {
 	partner?: string;
 	position?: string;
 	articleSlug?: string;
+	language?: 'fr' | 'en';
 }
 
 const {
@@ -13,12 +14,13 @@ const {
 	partner = 'unknown',
 	position = 'article',
 	articleSlug,
+	language = 'fr',
 } = Astro.props;
 ---
 
 <div class="affiliate-cta">
 	<p class="affiliate-cta-disclosure">
-		Certains liens peuvent être partenaires. Cela peut nous rémunérer, sans frais supplémentaires pour vous.
+		{language === 'en' ? 'Some links may be affiliate links. We may earn a commission at no additional cost to you.' : 'Certains liens peuvent être partenaires. Cela peut nous rémunérer, sans frais supplémentaires pour vous.'}
 	</p>
 
 	<a
@@ -29,6 +31,7 @@ const {
 		data-affiliate-partner={partner}
 		data-affiliate-position={position}
 		data-affiliate-slug={articleSlug}
+		data-affiliate-language={language}
 	>
 		{label}
 	</a>

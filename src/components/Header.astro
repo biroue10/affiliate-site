@@ -1,6 +1,11 @@
 ---
 import Logo from './Logo.astro';
 import { SITE_CATEGORIES } from '../consts';
+import { CATEGORY_LABELS, CATEGORY_PATHS, type Locale } from '../lib/i18n';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props { language?: Locale; }
+const { language = 'fr' } = Astro.props;
 
 const pathname = Astro.url.pathname;
 
@@ -12,21 +17,24 @@ const isActive = (path: string) =>
 	<div class="container header-inner">
 		<Logo size="md" />
 
-		<nav class="main-nav" aria-label="Navigation principale">
+		<nav class="main-nav" aria-label={language === 'en' ? 'Main navigation' : 'Navigation principale'}>
 			{
 				SITE_CATEGORIES.map((category) => {
-					const href = `/${category.slug}/`;
+					const href = language === 'en'
+						? CATEGORY_PATHS.en[category.slug as keyof typeof CATEGORY_PATHS.en]
+						: `/${category.slug}/`;
 
 					return (
 						<a
 							href={href}
 							aria-current={isActive(href) ? 'page' : undefined}
 						>
-							{category.label}
+							{language === 'en' ? CATEGORY_LABELS.en[category.slug as keyof typeof CATEGORY_LABELS.en] : category.label}
 						</a>
 					);
 				})
 			}
 		</nav>
+		<LanguageSwitcher language={language} />
 	</div>
 </header>

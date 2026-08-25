@@ -6,15 +6,16 @@ interface FAQItem {
 
 interface Props {
 	items: FAQItem[];
+	language?: 'fr' | 'en';
 }
 
-const { items } = Astro.props;
+const { items, language = 'fr' } = Astro.props;
 ---
 
 {
 	items.length > 0 && (
 		<section class="faq-section">
-			<p class="eyebrow">Questions fréquentes</p>
+			<p class="eyebrow">{language === 'en' ? 'Frequently asked questions' : 'Questions fréquentes'}</p>
 			<h2>FAQ</h2>
 
 			<div class="faq-list">

@@ -2,16 +2,17 @@
 interface Props {
 	pros: string[];
 	cons: string[];
+	language?: 'fr' | 'en';
 }
 
-const { pros, cons } = Astro.props;
+const { pros, cons, language = 'fr' } = Astro.props;
 ---
 
 {
 	(pros.length > 0 || cons.length > 0) && (
 		<div class="pros-cons">
 			<section class="pros-box">
-				<h2>Avantages</h2>
+				<h2>{language === 'en' ? 'Pros' : 'Avantages'}</h2>
 
 				<ul>
 					{pros.map((item) => <li>{item}</li>)}
@@ -19,7 +20,7 @@ const { pros, cons } = Astro.props;
 			</section>
 
 			<section class="cons-box">
-				<h2>Inconvénients</h2>
+				<h2>{language === 'en' ? 'Cons' : 'Inconvénients'}</h2>
 
 				<ul>
 					{cons.map((item) => <li>{item}</li>)}

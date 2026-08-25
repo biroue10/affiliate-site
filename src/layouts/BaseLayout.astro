@@ -5,7 +5,7 @@ import BaseHead from '../components/BaseHead.astro';
 import AffiliateTracking from '../components/AffiliateTracking.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_LANG } from '../consts';
+import { getAlternatePath, getLocale, type Locale } from '../lib/i18n';
 
 interface Props {
 	title: string;
@@ -18,6 +18,7 @@ interface Props {
 	modifiedTime?: Date;
 	adultContent?: boolean;
 	schemas?: Record<string, unknown>[];
+	language?: Locale;
 }
 
 const {
@@ -31,11 +32,15 @@ const {
 	modifiedTime,
 	adultContent = false,
 	schemas = [],
+	language = getLocale(Astro.url.pathname),
 } = Astro.props;
+
+const frAlternate = getAlternatePath(Astro.url.pathname, 'fr');
+const enAlternate = getAlternatePath(Astro.url.pathname, 'en');
 ---
 
 <!doctype html>
-<html lang={SITE_LANG}>
+<html lang={language}>
 	<head>
 		<BaseHead
 			title={title}
@@ -47,6 +52,9 @@ const {
 			publishedTime={publishedTime}
 			modifiedTime={modifiedTime}
 			adultContent={adultContent}
+			language={language}
+			frAlternate={frAlternate}
+			enAlternate={enAlternate}
 		/>
 
 		{
@@ -62,16 +70,16 @@ const {
 
 	<body>
 		<a class="skip-link" href="#main-content">
-			Aller au contenu
+			{language === 'en' ? 'Skip to content' : 'Aller au contenu'}
 		</a>
 
-		<Header />
+		<Header language={language} />
 
 		<main id="main-content">
 			<slot />
 		</main>
 
-		<Footer />
+		<Footer language={language} />
 
 		<AffiliateTracking />
 	</body>

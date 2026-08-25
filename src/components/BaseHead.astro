@@ -5,7 +5,6 @@ import type { ImageMetadata } from 'astro';
 
 import {
 	SITE_AUTHOR,
-	SITE_LANG,
 	SITE_LOCALE,
 	SITE_TITLE,
 } from '../consts';
@@ -20,6 +19,9 @@ interface Props {
 	publishedTime?: Date;
 	modifiedTime?: Date;
 	adultContent?: boolean;
+	language?: 'fr' | 'en';
+	frAlternate?: string;
+	enAlternate?: string;
 }
 
 const {
@@ -32,6 +34,9 @@ const {
 	publishedTime,
 	modifiedTime,
 	adultContent = false,
+	language = 'fr',
+	frAlternate,
+	enAlternate,
 } = Astro.props;
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
@@ -76,12 +81,15 @@ const robotsContent = effectiveNoindex
 
 <!-- Canonical -->
 <link rel="canonical" href={canonicalURL} />
+{frAlternate && <link rel="alternate" hreflang="fr" href={new URL(frAlternate, siteBase)} />}
+{enAlternate && <link rel="alternate" hreflang="en" href={new URL(enAlternate, siteBase)} />}
+{frAlternate && <link rel="alternate" hreflang="x-default" href={new URL(frAlternate, siteBase)} />}
 
 <!-- Primary metadata -->
 <title>{title}</title>
 <meta name="description" content={description} />
-<meta name="author" content={SITE_AUTHOR} />
-<meta http-equiv="content-language" content={SITE_LANG} />
+<meta name="author" content={language === 'en' ? 'Clairlia editorial team' : SITE_AUTHOR} />
+<meta http-equiv="content-language" content={language} />
 
 <!-- Open Graph -->
 <meta property="og:type" content={type} />
@@ -91,7 +99,8 @@ const robotsContent = effectiveNoindex
 <meta property="og:image" content={imageURL} />
 <meta property="og:image:alt" content={title} />
 <meta property="og:site_name" content={SITE_TITLE} />
-<meta property="og:locale" content={SITE_LOCALE} />
+<meta property="og:locale" content={language === 'en' ? 'en_US' : SITE_LOCALE} />
+<meta property="og:locale:alternate" content={language === 'en' ? 'fr_FR' : 'en_US'} />
 
 <!-- Article metadata -->
 {

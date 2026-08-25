@@ -8,6 +8,7 @@
 
 		const partner = target.dataset.affiliatePartner;
 		const pageSlug = target.dataset.affiliateSlug;
+		const language = target.dataset.affiliateLanguage;
 
 		if (!partner) return;
 
@@ -15,6 +16,7 @@
 			event: 'affiliate_click',
 			partner,
 			page_slug: pageSlug,
+			language,
 		};
 
 		window.dispatchEvent(
