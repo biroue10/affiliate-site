@@ -9,7 +9,7 @@ interface Props {
 const { headers, rows } = Astro.props;
 ---
 
-<div class="comparison-table-wrapper">
+<div class="comparison-table-wrapper" role="region" aria-label="Tableau comparatif" tabindex="0">
 	<table class="comparison-table">
 		<thead>
 			<tr>
