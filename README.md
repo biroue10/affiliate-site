@@ -308,12 +308,17 @@ Les contrôles portent notamment sur :
 
 - les balises title ;
 - les meta descriptions ;
+- l’unicité des titles et descriptions ;
 - les URL canonical ;
+- le caractère auto-référent des canonicals ;
 - les directives robots ;
 - la présence d'un H1 ;
 - la hiérarchie des headings ;
 - les données structurées JSON-LD ;
 - les liens internes ;
+- les liens éditoriaux dans la bonne langue ;
+- les attributs obligatoires des liens affiliés OurDream ;
+- le texte alternatif des images principales ;
 - robots.txt ;
 - le sitemap ;
 - la cohérence entre les pages noindex et le sitemap.

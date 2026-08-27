@@ -157,6 +157,8 @@ for (const file of htmlFiles) {
 		);
 	}
 
+	const title = titleMatches[0]?.[1].trim();
+
 	/*
 	 * META DESCRIPTION
 	 */
@@ -171,6 +173,8 @@ for (const file of htmlFiles) {
 			`${route}: meta description absente ou dupliquée`,
 		);
 	}
+
+	const description = descriptions[0]?.[1].trim();
 
 	/*
 	 * CANONICAL
@@ -194,6 +198,7 @@ for (const file of htmlFiles) {
 
 		try {
 			const canonicalURL = new URL(canonical);
+			const expectedCanonical = new URL(route, expectedSite).href;
 
 			if (
 				canonicalURL.origin !==
@@ -202,6 +207,10 @@ for (const file of htmlFiles) {
 				fail(
 					`${route}: canonical sur ${canonicalURL.origin} au lieu de ${expectedSite.origin}`,
 				);
+			}
+
+			if (route !== '/404.html' && canonicalURL.href !== expectedCanonical) {
+				fail(`${route}: canonical non auto-référente (${canonicalURL.href})`);
 			}
 		} catch {
 			fail(
@@ -226,6 +235,14 @@ for (const file of htmlFiles) {
 
 	const noindex =
 		robots.toLowerCase().includes('noindex');
+
+	/* Main article image must carry a descriptive alt attribute. */
+	if (/<meta\b[^>]*property=["']og:type["'][^>]*content=["']article["']/i.test(html)) {
+		const heroImage = html.match(/<div class="article-hero-image">[\s\S]*?<img\b([^>]*)>/i);
+		if (heroImage && !/\balt=["'][^"']+['"]/i.test(heroImage[1])) {
+			fail(`${route}: image principale sans texte alternatif`);
+		}
+	}
 
 	/*
 	 * H1
@@ -362,11 +379,53 @@ for (const file of htmlFiles) {
 		}
 	}
 
+	/* Editorial body links must stay in the page language. */
+	const articleContent = html.match(/<article\b[\s\S]*?<\/article>/i)?.[0] ?? '';
+	const articleLinks = [...articleContent.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>/gi)]
+		.map((match) => match[1]);
+	for (const href of articleLinks) {
+		const sharedRoute = href === '/equipe-editoriale/';
+		if (route.startsWith('/en/') && href.startsWith('/') && !href.startsWith('/en/') && !sharedRoute) {
+			fail(`${route}: lien éditorial vers une URL française (${href})`);
+		}
+		if (!route.startsWith('/en/') && href.startsWith('/en/')) {
+			fail(`${route}: lien éditorial vers une URL anglaise (${href})`);
+		}
+	}
+
+	/* Approved OurDream affiliate links have the required disclosure attributes. */
+	for (const match of html.matchAll(/<a\b([^>]*href=["']https:\/\/www\.ourdreamersai13\.com\/9B9M5TN\/3QQG7\/["'][^>]*)>/gi)) {
+		const attributes = match[1];
+		if (!/target=["']_blank["']/i.test(attributes) || !/rel=["']sponsored noopener noreferrer["']/i.test(attributes)) {
+			fail(`${route}: lien affilié OurDream sans target/rel requis`);
+		}
+		if (!/data-affiliate-partner=["']ourdream["']/i.test(attributes) || !/data-affiliate-position=["'][^"']+["']/i.test(attributes)) {
+			fail(`${route}: lien affilié OurDream sans partenaire ou emplacement`);
+		}
+	}
+
 	pageData.push({
 		route,
 		canonical,
 		noindex,
+		title,
+		description,
 	});
+}
+
+for (const field of ['title', 'description']) {
+	const values = new Map();
+	for (const page of pageData.filter((page) => !page.noindex && page.route !== '/404.html')) {
+		const value = page[field];
+		if (!value) continue;
+		const localeValue = `${page.route.startsWith('/en/') ? 'en' : 'fr'}:${value}`;
+		const routes = values.get(localeValue) ?? [];
+		routes.push(page.route);
+		values.set(localeValue, routes);
+	}
+	for (const [localeValue, routes] of values) {
+		if (routes.length > 1) fail(`${field} dupliqué sur ${routes.join(', ')} : ${localeValue}`);
+	}
 }
 
 /*
