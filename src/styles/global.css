@@ -633,6 +633,8 @@ svg {
 
 .affiliate-button {
 	display: inline-block;
+	min-height: 44px;
+	box-sizing: border-box;
 	padding: 0.85rem 1.3rem;
 	border-radius: 11px;
 	background: var(--accent);
@@ -653,6 +655,7 @@ svg {
 
 .comparison-table-wrapper {
 	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 	margin: 2rem auto;
 }
 
@@ -788,5 +791,12 @@ svg {
 
 	.comparison-table-wrapper {
 		width: calc(100vw - 1rem);
+		scrollbar-width: thin;
+	}
+
+	.affiliate-button {
+		width: 100%;
+		max-width: 28rem;
+		padding-block: 0.95rem;
 	}
 }

@@ -50,6 +50,9 @@ const imageURL =
 		? new URL(image, siteBase)
 		: new URL(image.src, siteBase);
 
+const imageWidth = typeof image === 'string' ? undefined : image.width;
+const imageHeight = typeof image === 'string' ? undefined : image.height;
+
 const effectiveNoindex =
 	noindex || siteBase.hostname.endsWith('.invalid');
 
@@ -97,6 +100,8 @@ const robotsContent = effectiveNoindex
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageURL} />
+{imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+{imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
 <meta property="og:image:alt" content={title} />
 <meta property="og:site_name" content={SITE_TITLE} />
 <meta property="og:locale" content={language === 'en' ? 'en_US' : SITE_LOCALE} />
