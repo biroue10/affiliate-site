@@ -48,6 +48,31 @@ for (const [route, html] of pages) {
 	pairs++;
 }
 
+/* Keep the account-deletion guide connected to the English OurDream cluster. */
+const deletionRoute = '/en/guides/delete-ourdream-account/';
+const deletionPage = pages.get(deletionRoute);
+const requiredDeletionInboundLinks = [
+	'/en/ai-companions/ourdream-review-2026/',
+	'/en/guides/is-ourdream-safe-2026/',
+	'/en/guides/ourdream-free-limits/',
+	'/en/guides/ai-girlfriend-privacy/',
+];
+
+for (const route of requiredDeletionInboundLinks) {
+	if (!pages.get(route)?.includes(`href="${deletionRoute}"`)) {
+		fail(`${route}: missing contextual link to ${deletionRoute}`);
+	}
+}
+
+for (const target of [
+	'/en/ai-companions/ourdream-review-2026/',
+	'/en/guides/is-ourdream-safe-2026/',
+]) {
+	if (!deletionPage?.includes(`href="${target}"`)) {
+		fail(`${deletionRoute}: missing related link to ${target}`);
+	}
+}
+
 if (pairs !== 25) fail(`expected 25 English route pairs, found ${pairs}`);
 if (failures.length) {
 	console.error(`❌ i18n audit failed:\n${failures.map((item) => `- ${item}`).join('\n')}`);
